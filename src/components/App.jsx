@@ -1,3 +1,7 @@
+import Button from './SearchGallery/Button';
+import ImageGallery from './SearchGallery/ImageGallery';
+import ImageGalleryItem from './SearchGallery/ImageGalleryItem';
+import SearchGallery from './SearchGallery/SearchGallery';
 export const App = () => {
   return (
     <div
@@ -5,12 +9,17 @@ export const App = () => {
         height: '100vh',
         display: 'flex',
         justifyContent: 'center',
-        alignItems: 'center',
+        // alignItems: 'center',
         fontSize: 40,
-        color: '#010101'
+        color: '#010101',
       }}
     >
-      React homework template
+      <SearchGallery />
+      <ImageGallery>
+        <ImageGalleryItem />
+      </ImageGallery>
+      <Button />
+      {/* React homework template */}
     </div>
   );
 };

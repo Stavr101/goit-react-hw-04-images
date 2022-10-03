@@ -1,19 +1,4 @@
-@import-normalize; /* bring in normalize.css styles */
-
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
-html {
+/* html {
   box-sizing: border-box;
   width: 100vw;
   overflow-x: hidden;
@@ -25,7 +10,7 @@ html {
   box-sizing: inherit;
 }
 
-/* body {
+body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
     Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
@@ -33,7 +18,7 @@ html {
   background-color: #fff;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-} */
+}
 
 img {
   display: block;
@@ -44,7 +29,7 @@ img {
 /*
  * Стили компонента App
  */
-.App {
+/* .App {
   display: grid;
   grid-template-columns: 1fr;
   grid-gap: 16px;
@@ -54,7 +39,7 @@ img {
 /*
  * Стили компонента Searchbar
  */
-.Searchbar {
+/* .Searchbar {
   top: 0;
   left: 0;
   position: sticky;
@@ -76,6 +61,7 @@ img {
 /*
  * Стили компонента SearchForm
  */
+/*  
 .SearchForm {
   display: flex;
   align-items: center;
@@ -84,8 +70,8 @@ img {
   background-color: #fff;
   border-radius: 3px;
   overflow: hidden;
-}
-
+} */
+/* 
 .SearchForm-button {
   display: inline-block;
   width: 48px;
@@ -99,8 +85,8 @@ img {
   transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
   outline: none;
-}
-
+} */
+/* 
 .SearchForm-button:hover {
   opacity: 1;
 }
@@ -126,17 +112,17 @@ img {
   outline: none;
   padding-left: 4px;
   padding-right: 4px;
-}
-
+} */
+/* 
 .SearchForm-input::placeholder {
   font: inherit;
   font-size: 18px;
-}
+} */
 
 /*
  * Стили компонента ImageGallery
  */
-.ImageGallery {
+/* .ImageGallery {
   display: grid;
   max-width: calc(100vw - 48px);
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
@@ -147,12 +133,12 @@ img {
   list-style: none;
   margin-left: auto;
   margin-right: auto;
-}
+} */
 
 /*
  * Стили компонента ImageGalleryItem
  */
-.ImageGalleryItem {
+/* .ImageGalleryItem {
   border-radius: 2px;
   box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2),
     0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12);
@@ -168,12 +154,12 @@ img {
 .ImageGalleryItem-image:hover {
   transform: scale(1.03);
   cursor: zoom-in;
-}
+} */
 
 /*
  * Стили компонента Modal
  */
-
+/* 
 .Overlay {
   position: fixed;
   top: 0;
@@ -185,17 +171,17 @@ img {
   align-items: center;
   background-color: rgba(0, 0, 0, 0.8);
   z-index: 1200;
-}
-
+} */
+/* 
 .Modal {
   max-width: calc(100vw - 48px);
   max-height: calc(100vh - 24px);
-}
+} */
 
 /*
 * Стили компонента Buton (Load more)
 */
-.Button {
+/* .Button {
   padding: 8px 16px;
   border-radius: 2px;
   background-color: #3f51b5;
@@ -219,4 +205,4 @@ img {
 .Button:hover,
 .Button:focus {
   background-color: #303f9f;
-}
+}  */

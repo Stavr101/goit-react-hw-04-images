@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
+import css from '../../styles.module.css';
 import axios from 'axios';
-// import Button from './Button';
-// import { getImages } from 'components/services/imageApi';
+import SearchBar from './SearchBar';
+import ImageGallery from './ImageGallery';
+import ImageGalleryItem from './ImageGalleryItem';
+import Loader from 'shared/components/Loader/Loader';
 
 export default class SearchGallery extends Component {
   state = {
@@ -14,7 +17,14 @@ export default class SearchGallery extends Component {
     API_KEY: `29154782-64abcd202d8466e583ce5ca87`,
   };
 
-  fetchPost() {
+  componentDidUpdate(_, prevState) {
+    const { name, page } = this.state;
+    if ((name && prevState.name !== name) || page > prevState.page) {
+      this.fetchImage();
+    }
+  }
+
+  fetchImage() {
     const { page, name, BASE_URL, API_KEY } = this.state;
     this.setState({ loading: true });
 
@@ -24,7 +34,6 @@ export default class SearchGallery extends Component {
       )
       .then(({ data }) => {
         this.setState(({ items }) => {
-          console.log(data);
           return { items: [...items, ...data.hits] };
         });
       })
@@ -34,37 +43,41 @@ export default class SearchGallery extends Component {
       .finally(() => this.setState({ loading: false }));
   }
 
-  onChange = ({ target: { name, value } }) => {
-    this.setState({ [name]: value });
+  loadMore = () => {
+    this.setState(({ page }) => {
+      return {
+        page: page + 1,
+      };
+    });
   };
 
-  handleSubmit = e => {
-    e.preventDefault();
-    this.fetchPost();
+  onSearch = ({ name }) => {
+    this.setState({ name });
+  };
+
+  openModal = modalContent => {
+    this.setState({ modalOpen: true, modalContent });
+  };
+
+  closeModal = () => {
+    this.setState({ modalOpen: false });
   };
 
   render() {
-    const { items, loading, error, name } = this.state;
-
-    const { onChange, handleSubmit } = this;
+    const { items, error, loading } = this.state;
+    const isPosts = Boolean(items.length);
+    const { loadMore } = this;
+    // console.log(items);
+    const { onSearch, openModal, closeModal } = this;
     return (
-      <div>
-        <header className="searchbar">
-          <form className="form">
-            <button type="submit" className="button" onClick={handleSubmit}>
-              <span className="button-label">Search</span>
-            </button>
+      <div className={css.App}>
+        <SearchBar onSubmit={onSearch} />
 
-            <input
-              className="input"
-              type="text"
-              autoComplete="off"
-              autoFocus
-              placeholder="Search images and photos"
-              onChange={onChange}
-            />
-          </form>
-        </header>
+        {loading && <Loader />}
+        {error && <p>Спробуйте пізніше.... </p>}
+        {isPosts && <ImageGalleryItem items={items} />}
+
+        {isPosts && <button onClick={loadMore}>load more</button>}
       </div>
     );
   }

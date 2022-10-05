@@ -1,9 +1,12 @@
 import React from 'react';
+// import ImageGalleryItem from './ImageGalleryItem';
+import css from '../../styles.module.css';
 
 export default function ImageGallery() {
+  // console.log(items);
   return (
-    <div>
-      <ul className="gallery">{/* <!-- Набор <li> с изображениями --> */}</ul>
-    </div>
+    <ul className={css.ImageGallery}>
+      {/* <ImageGalleryItem items={items} /> */}
+    </ul>
   );
 }

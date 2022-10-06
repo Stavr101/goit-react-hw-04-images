@@ -3,18 +3,25 @@ import css from '../../styles.module.css';
 import axios from 'axios';
 import SearchBar from './SearchBar';
 import ImageGallery from './ImageGallery';
-import ImageGalleryItem from './ImageGalleryItem';
+// import ImageGalleryItem from './ImageGalleryItem';
 import Loader from 'shared/components/Loader/Loader';
+import Modal from './Modal';
+import Button from './Button';
 
 export default class SearchGallery extends Component {
   state = {
+    BASE_URL: `https://pixabay.com/api/`,
+    API_KEY: `29154782-64abcd202d8466e583ce5ca87`,
     items: [],
     loading: false,
     error: null,
     name: '',
     page: 1,
-    BASE_URL: `https://pixabay.com/api/`,
-    API_KEY: `29154782-64abcd202d8466e583ce5ca87`,
+    modalOpen: false,
+    modalContent: {
+      largeImageURL: '',
+      tags: '',
+    },
   };
 
   componentDidUpdate(_, prevState) {
@@ -30,12 +37,13 @@ export default class SearchGallery extends Component {
 
     axios
       .get(
-        `${BASE_URL}?q=${name}&${page}&key=${API_KEY}&image_type=photo&orientation=horizontal&per_page=12`
+        `${BASE_URL}?q=${name}&page=${page}&key=${API_KEY}&image_type=photo&orientation=horizontal&per_page=12`
       )
       .then(({ data }) => {
         this.setState(({ items }) => {
           return { items: [...items, ...data.hits] };
         });
+        this.setState({ name: '' });
       })
       .catch(error => {
         this.setState({ error });
@@ -56,18 +64,27 @@ export default class SearchGallery extends Component {
   };
 
   openModal = modalContent => {
-    this.setState({ modalOpen: true, modalContent });
+    this.setState({
+      modalOpen: true,
+      modalContent,
+    });
   };
 
   closeModal = () => {
-    this.setState({ modalOpen: false });
+    this.setState({
+      modalOpen: false,
+      modalContent: {
+        largeImageURL: '',
+        tags: '',
+      },
+    });
   };
 
   render() {
-    const { items, error, loading } = this.state;
+    const { items, error, loading, modalOpen, modalContent } = this.state;
     const isPosts = Boolean(items.length);
     const { loadMore } = this;
-    // console.log(items);
+
     const { onSearch, openModal, closeModal } = this;
     return (
       <div className={css.App}>
@@ -75,9 +92,13 @@ export default class SearchGallery extends Component {
 
         {loading && <Loader />}
         {error && <p>Спробуйте пізніше.... </p>}
-        {isPosts && <ImageGalleryItem items={items} />}
-
-        {isPosts && <button onClick={loadMore}>load more</button>}
+        {isPosts && <ImageGallery items={items} onClick={openModal} />}
+        {modalOpen && (
+          <Modal onClose={closeModal}>
+            <img src={modalContent.largeImageURL} alt={modalContent.tags} />
+          </Modal>
+        )}
+        {isPosts && <Button onClick={loadMore} />}
       </div>
     );
   }

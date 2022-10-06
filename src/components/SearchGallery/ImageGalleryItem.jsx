@@ -1,12 +1,16 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import css from '../../styles.module.css';
 
-export default function ImageGalleryItem({ items, onClick }) {
-  // console.log(items);
-  const elements = items.map(({ webformatURL, largeImageURL, id, tags }) => (
+export default function ImageGalleryItem({
+  webformatURL,
+  largeImageURL,
+  tags,
+  onClick,
+}) {
+  return (
     <li
-      key={id}
-      onClick={() => onClick({ largeImageURL })}
+      onClick={() => onClick({ largeImageURL, tags })}
       className={css.ImageGalleryItem}
     >
       <img
@@ -15,7 +19,11 @@ export default function ImageGalleryItem({ items, onClick }) {
         className={css.ImageGalleryItem_image}
       />
     </li>
-  ));
-
-  return elements;
+  );
 }
+ImageGalleryItem.propTypes = {
+  webformatURL: PropTypes.string,
+  largeImageURL: PropTypes.string,
+  tags: PropTypes.string,
+  onClick: PropTypes.func,
+};

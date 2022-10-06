@@ -172,14 +172,28 @@ img {
   z-index: 1200;
 }
 .Modal {
-  max-width: calc(100vw - 48px);
-  max-height: calc(100vh - 24px);
+  display: flex;
+  align-items: center;
+  max-width: calc(70vw - 48px);
+  max-height: calc(70vh - 24px);
 }
 
+.Close {
+  color: red;
+  font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
+  font-weight: bold;
+  font-size: 14px;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  cursor: pointer;
+}
 /*
 * Стили компонента Buton (Load more)
 */
 .Button {
+  margin-left: auto;
+  margin-right: auto;
   padding: 8px 16px;
   border-radius: 2px;
   background-color: #3f51b5;
@@ -195,7 +209,7 @@ img {
   line-height: 24px;
   font-style: normal;
   font-weight: 500;
-  min-width: 180px;
+  width: 180px;
   box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2),
     0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
 }

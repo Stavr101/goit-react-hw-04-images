@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 import css from '../../styles.module.css';
 import { ImSearch } from 'react-icons/im';
 

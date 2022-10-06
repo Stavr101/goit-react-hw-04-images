@@ -3,7 +3,6 @@ import css from '../../styles.module.css';
 import axios from 'axios';
 import SearchBar from './SearchBar';
 import ImageGallery from './ImageGallery';
-// import ImageGalleryItem from './ImageGalleryItem';
 import Loader from 'shared/components/Loader/Loader';
 import Modal from './Modal';
 import Button from './Button';

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import css from '../../styles.module.css';
 import axios from 'axios';
-import SearchBar from './SearchBar';
 import ImageGallery from './ImageGallery';
+import SearchBar from './SearchBar';
 import Loader from 'shared/components/Loader/Loader';
 import Modal from './Modal';
 import Button from './Button';

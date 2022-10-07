@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import css from '../../styles.module.css';
+import css from '../../../styles.module.css';
 
 export default function Button({ onClick }) {
   return (

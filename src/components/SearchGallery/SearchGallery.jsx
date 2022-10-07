@@ -1,16 +1,19 @@
 import React, { Component } from 'react';
-import css from '../../styles.module.css';
 import axios from 'axios';
-import ImageGallery from './ImageGallery';
-import SearchBar from './SearchBar';
 import Loader from 'shared/components/Loader/Loader';
-import Modal from './Modal';
-import Button from './Button';
+import Modal from './Modal/Modal';
+import Button from './Button/Button.jsx';
+import ImageGallery from './ImageGallery/ImageGallery';
+import SearchBar from './SearchBar/SearchBar';
+import css from '../../styles.module.css';
 
 export default class SearchGallery extends Component {
+  static BASE_URL = `https://pixabay.com/api/`;
+  static API_KEY = `29154782-64abcd202d8466e583ce5ca87`;
+
   state = {
-    BASE_URL: `https://pixabay.com/api/`,
-    API_KEY: `29154782-64abcd202d8466e583ce5ca87`,
+    // BASE_URL: `https://pixabay.com/api/`,
+    // API_KEY: `29154782-64abcd202d8466e583ce5ca87`,
     items: [],
     loading: false,
     error: null,
@@ -31,12 +34,12 @@ export default class SearchGallery extends Component {
   }
 
   fetchImage() {
-    const { page, name, BASE_URL, API_KEY } = this.state;
+    const { page, name } = this.state;
     this.setState({ loading: true });
 
     axios
       .get(
-        `${BASE_URL}?q=${name}&page=${page}&key=${API_KEY}&image_type=photo&orientation=horizontal&per_page=12`
+        `${SearchGallery.BASE_URL}?q=${name}&page=${page}&key=${SearchGallery.API_KEY}&image_type=photo&orientation=horizontal&per_page=12`
       )
       .then(({ data }) => {
         this.setState(({ items }) => {

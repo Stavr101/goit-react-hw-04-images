@@ -58,9 +58,10 @@ export default function SearchGallery() {
   };
 
   const openModal = modalContent => {
+    console.log(modalContent);
     setModalOpen(true);
-    setLargeImageURL();
-    setTags();
+    setLargeImageURL(modalContent.largeImageURL);
+    setTags(modalContent.tags);
   };
 
   const closeModal = () => {
